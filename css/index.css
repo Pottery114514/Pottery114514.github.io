@@ -1313,15 +1313,15 @@ canvas:not(#ribbon-canvas),
   --tab-botton-bg: #f0f0f0;
   --tab-botton-color: #1f2d3d;
   --tab-button-hover-bg: #dcdcdc;
-  --tab-button-active-bg: #fff;
-  --card-bg: #fff;
+  --tab-button-active-bg: rgba(255,255,255,0.329);
+  --card-bg: rgba(255,255,255,0.329);
   --sidebar-bg: #f6f8fa;
   --btn-hover-color: #ff7242;
   --btn-color: #fff;
   --btn-bg: #ffb3bf;
   --text-bg-hover: rgba(255,179,191,0.7);
   --light-grey: #eee;
-  --white: #fff;
+  --white: rgba(255,255,255,0.329);
   --text-highlight-color: #1f2d3d;
   --blockquote-color: #6a737d;
   --blockquote-bg: rgba(73,177,245,0.1);
@@ -4043,7 +4043,7 @@ blockquote footer cite:before {
   top: 0;
   left: 0;
   background: #ffb3bf;
-  color: #fff;
+  color: rgba(255,255,255,0.329);
   cursor: pointer;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -4547,7 +4547,7 @@ blockquote footer cite:before {
 .mermaid {
   overflow: auto;
   margin: 0 0 1rem;
-  background: #fff;
+  background: rgba(255,255,255,0.329);
   text-align: center;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -5826,6 +5826,20 @@ blockquote.pullquote.right {
 .recent-post-item {
   background: rgba(255,255,255,0.32) !important;
 }
-.recent-posts {
-  background: rgba(204,204,204,0.6) !important;
+.aside-content {
+  --card-bg: rgba(255,255,255,0.612);
+  background: rgba(255,255,255,0.38) !important;
+}
+.footer {
+  background: rgba(239,145,160,0.26) !important;
+}
+.page {
+  background: rgba(238,238,238,0.55) !important;
+}
+.post {
+  background: rgba(255,255,255,0.42) !important;
+  card-bg: rgba(255,255,255,0.2);
+}
+.layout {
+  background-color: rgba(255,255,255,0.23) !important;
 }
