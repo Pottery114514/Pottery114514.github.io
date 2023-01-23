@@ -5,13 +5,13 @@
 <meta property="og:site_name" content="Yoshino&#39;s blogs">
 <meta property="og:description" content="一个普通高中生眼中的数学。这很有趣，不是吗（思想泡泡!">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2022/01/08/olcXDVJ2speuymq.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/cAgEZd5kj2ueK3H.png">
 <meta property="article:published_time" content="2022-07-31T10:40:44.000Z">
 <meta property="article:modified_time" content="2022-08-15T09:53:57.000Z">
 <meta property="article:author" content="Yoshino">
 <meta property="article:tag" content="高中学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/01/08/olcXDVJ2speuymq.png"><link rel="shortcut icon" href="/img/omikuzi_char04.png"><link rel="canonical" href="http://pottery114514.github.io/2022/07/31/Math/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/cAgEZd5kj2ueK3H.png"><link rel="shortcut icon" href="/img/omikuzi_char04.png"><link rel="canonical" href="http://pottery114514.github.io/2022/07/31/Math/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
@@ -155,7 +155,7 @@
 <li><p>等号右侧同理</p>
 <script type="math/tex; mode=display">\begin{bmatrix} \;\color{red}3\; \\ \;\color{red}0\; \\ \;\color{red}0\; \end{bmatrix}</script><p>(从技术上讲，这是一个“列向量”，但你现在不需要知道这个术语，如果有的话。)</p>
 </li>
-<li><p>用答案列替换z的系数列并计算<br><img src="计算.png" alt="行列式计算"></p>
+<li><p>用答案列替换z的系数列并计算<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="计算.png" alt="行列式计算"></p>
 </li>
 <li><p>Then my hand-in answer is</p>
 <script type="math/tex; mode=display">z = \frac{D_z}{D}=3</script></li>
@@ -240,9 +240,9 @@
 <p>但他们的困惑是从他们的角度产生的,他们只认为这是“0 <em> 0 = -1”。是的，Re（i） </em> Re（i） = 0，但这不是他(i)的操作！Re（i * i），这是完全不同的！i在自己的维度平方，并将这个结果带回到实数的维度。我们需要平方i，虚数，而不是0.当心微积分中的类似错误：我们处理对我们来说看起来像零的微小数字，但我们不能假设它们是零（就像实数们对待i像0一样）。不，我们需要在另一个维度上“做数学运算”，并将结果带回来。</p>
 <p>极限和无穷小对如何完成此转换有不同的方式(perspectives)：<br>极限：“进行数学运算”，精度水平刚好超出您的检测范围（毫米），并将其恢复为体重秤上的数字（英寸）.无穷小：“运算”在不同的维度，并将其带回“标准”维度（就像取复数的实部一样;你取超实数的“标准”部分 - 之后更多）.从来没有人告诉我微积分可以让你以更高的精度水平工作，使用更简单的模型，并将结果带回我们的世界。</p>
 <p>4.一个真实的例子：$\frac{sin(x)}{x}$<br>让我们尝试一个概念性示例。假设我们想知道$\frac{sin(x)}{x}$在x=0时会发生什么。现在，如果我们只考虑x = 0，我们会得到一个荒谬的结果：0 / 0，这可能是任何东西。让我们退一步：“x = 0”在我们的世界中意味着什么？好吧，如果我们允许存在更高水平的准确性，我们知道这一点：看起来为零的事物在不同的维度上可能是非零的（就像i对我们来说可能是0，但不是）.我们要说的是，在这个更高的精度水平上，x可以非常非常接近于零，但不是“真正的零”。直观地说(Intuitively)，您可以将x视为0.0000…00001，其中“…”为足够多的零.在极限术语中，我们说x = 0 + d（delta，一个很小的变化，使我们保持在误差范围内），在无穷小的术语中，我们说x = 0 + h，其中h是一个微小的超实数，称为无穷小.</p>
-<p>好吧，我们有x在“对我们来说为零，但不是真的”的感觉。现在我们需要一个更简单的 sin（x） 模型。为什么？好吧，正弦是一个疯狂的重复曲线，我们很难知道发生了什么。但事实证明，直线是描述短距离曲线的好模型：<br><img src="近似.png" alt="sinx~x"><br>就像我们可以将填充形状分解成小矩形以使其更简单一样，我们可以将曲线解剖为一系列线段。在0左右，sin（x）看起来像x。因此，我们用“x”替换sin（x）。新的比率是多少？</p>
+<p>好吧，我们有x在“对我们来说为零，但不是真的”的感觉。现在我们需要一个更简单的 sin（x） 模型。为什么？好吧，正弦是一个疯狂的重复曲线，我们很难知道发生了什么。但事实证明，直线是描述短距离曲线的好模型：<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="近似.png" alt="sinx~x"><br>就像我们可以将填充形状分解成小矩形以使其更简单一样，我们可以将曲线解剖为一系列线段。在0左右，sin（x）看起来像x。因此，我们用“x”替换sin（x）。新的比率是多少？</p>
 <script type="math/tex; mode=display">\frac{\sin（x）}{x} \sim \frac{x}{x} = 1</script><p>好吧，“x/x”是1。请记住，我们并没有真正被零除，因为在这个超精确的世界中,x很小但非零（0 + d，或0 + h）。当我们“取极限或”取标准部分“时，这意味着我们进行数学运算（x / x = 1），然后找到我们世界中最接近其的数字（1）。所以，1是当sin（x）/ x接近零时我们得到的 - 也就是说，我们使x尽可能小，所以它对我们来说变成0(事实上并不是)。如果x变成零，那么这个比率将是未定义的.因此，据我们所知，“sin（x）/x”看起来像“x/x = 1”。</p>
-<p>5.Warning：诀窍并不总是有效<br>有些函数真的很“跳跃”——它们可能在无穷小的层面上有所不同。这意味着我们无法可靠地将结果带回我们的世界。如$sin\frac{1}{x}$<br><img src="例外.png" alt="例外"><br>看起来该函数在微观层面上不稳定，并且行为不“平稳”。限制的严格部分是弄清楚哪些函数表现得足够好，可以制作简单而准确的模型。幸运的是，世界上大多数自然函数（x，x2， 罪， ex） 表现良好，可以用微积分建模。</p>
+<p>5.Warning：诀窍并不总是有效<br>有些函数真的很“跳跃”——它们可能在无穷小的层面上有所不同。这意味着我们无法可靠地将结果带回我们的世界。如$sin\frac{1}{x}$<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="例外.png" alt="例外"><br>看起来该函数在微观层面上不稳定，并且行为不“平稳”。限制的严格部分是弄清楚哪些函数表现得足够好，可以制作简单而准确的模型。幸运的是，世界上大多数自然函数（x，x2， 罪， ex） 表现良好，可以用微积分建模。</p>
 <h2 id="参数方程"><a href="#参数方程" class="headerlink" title="参数方程"></a>参数方程</h2><h3 id="它像什么？"><a href="#它像什么？" class="headerlink" title="它像什么？"></a>它像什么？</h3><p>像一个一个一个方程组，仅有一个自变量。</p>
 <p>或许你会知道斜抛运动：</p>
 <script type="math/tex; mode=display">\begin{cases}
@@ -277,7 +277,7 @@ y=v_yt-\frac{1}{2}gt^2
 <p>它可以准确地解释图像将如何变化。了解了这一点，您可以绘制函数图像，找到最小（大）值，从而做出更好的决策。</p>
 <p>By the way , 导数可以说是微积分的核心.</p>
 <p>求导也可以看做是极限运算.但你也可以用微分技术绕过极限计算(或记住常见的导数公式)</p>
-<h2 id="圆锥曲线"><a href="#圆锥曲线" class="headerlink" title="圆锥曲线"></a>圆锥曲线</h2><h3 id="双曲线"><a href="#双曲线" class="headerlink" title="双曲线"></a>双曲线</h3><p>1.特点<br><img src="双曲线.png" alt="参数"></p>
+<h2 id="圆锥曲线"><a href="#圆锥曲线" class="headerlink" title="圆锥曲线"></a>圆锥曲线</h2><h3 id="双曲线"><a href="#双曲线" class="headerlink" title="双曲线"></a>双曲线</h3><p>1.特点<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="双曲线.png" alt="参数"></p>
 <ul>
 <li>$a^2+b^2=c^2$(这与毕达哥拉斯定理不是一回事)</li>
 <li>b的值给出了双曲线的高度（虚轴），但这似乎并没有什么用</li>
