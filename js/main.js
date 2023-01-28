@@ -112,12 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.execCommand('copy')
         if (GLOBAL_CONFIG.Snackbar !== undefined) {
           btf.snackbarShow(GLOBAL_CONFIG.copy.success)
-
-
-
-
-
-          
         } else {
           const prevEle = ctx.previousElementSibling
           prevEle.innerText = GLOBAL_CONFIG.copy.success
@@ -872,6 +866,3 @@ document.addEventListener('DOMContentLoaded', function () {
   refreshFn()
   unRefreshFn()
 })
-if(window.location.href == 'http://localhost:4000/'||window.location.href == 'https://sianx.com/'||window.location.href == 'https://www.sianx.com/'||window.location.href == 'https://blog.sianx.com/'){
-    Snackbar.show({ actionText: '关闭',text: '欢迎来到丨浅笑安然丨的小站！',backgroundColor: '#9c9',actionTextColor: '#ffffff',pos: 'bottom-center',duration: '5000' });
-  }
