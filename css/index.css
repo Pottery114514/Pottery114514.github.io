@@ -1293,7 +1293,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 16px;
+  --global-font-size: 15px;
   --global-bg: rgba(255,255,255,0.67);
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -1307,15 +1307,15 @@ canvas:not(#ribbon-canvas),
   --tab-botton-bg: #f0f0f0;
   --tab-botton-color: #1f2d3d;
   --tab-button-hover-bg: #dcdcdc;
-  --tab-button-active-bg: rgba(255,255,255,0.67);
-  --card-bg: rgba(255,255,255,0.67);
+  --tab-button-active-bg: rgba(255,255,255,0.96);
+  --card-bg: rgba(255,255,255,0.96);
   --sidebar-bg: #f6f8fa;
   --btn-hover-color: #ff7242;
   --btn-color: #fff;
   --btn-bg: #ffb3bf;
   --text-bg-hover: rgba(255,179,191,0.7);
   --light-grey: #eee;
-  --white: rgba(255,255,255,0.67);
+  --white: rgba(255,255,255,0.96);
   --text-highlight-color: #1f2d3d;
   --blockquote-color: #6a737d;
   --blockquote-bg: rgba(73,177,245,0.1);
@@ -1433,7 +1433,7 @@ table td {
   vertical-align: middle;
 }
 *::selection {
-  background: #229adf;
+  background: #00c4b6;
   color: #f7f7f7;
 }
 button {
@@ -4358,7 +4358,7 @@ blockquote footer cite:before {
 .mermaid {
   overflow: auto;
   margin: 0 0 1rem;
-  background: rgba(255,255,255,0.67);
+  background: rgba(255,255,255,0.96);
   text-align: center;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
