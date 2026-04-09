@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>补题 | Yoshino's blogs</title><meta name="keywords" content="pottery'yoshino"><meta name="author" content="Yoshino"><meta name="copyright" content="Yoshino"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2025CCPC:四川&amp;2022河南Problem I. 本质不同后缀输出n个字符串的后缀串集大小.第一次尝试直接用set存储后缀串,果然还是过不了啊,直接MIE. 在紫皮书上看到过这样的处理方式:通过滚动哈希优化,将字符串转换为哈希值存储. 操作:对每个字符串,逆序遍历计算后缀哈希值 const ull base&#x3D;31;set&lt;ull&gt;note;void solve()&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="补题">
+<meta property="og:url" content="http://pottery114514.github.io/2026/04/09/%E8%A1%A5%E9%A2%98/index.html">
+<meta property="og:site_name" content="Yoshino&#39;s blogs">
+<meta property="og:description" content="2025CCPC:四川&amp;2022河南Problem I. 本质不同后缀输出n个字符串的后缀串集大小.第一次尝试直接用set存储后缀串,果然还是过不了啊,直接MIE. 在紫皮书上看到过这样的处理方式:通过滚动哈希优化,将字符串转换为哈希值存储. 操作:对每个字符串,逆序遍历计算后缀哈希值 const ull base&#x3D;31;set&lt;ull&gt;note;void solve()&amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/pq8iIZfyLxVkwWg.png">
+<meta property="article:published_time" content="2026-04-09T04:15:27.000Z">
+<meta property="article:modified_time" content="2026-04-09T10:38:40.795Z">
+<meta property="article:author" content="Yoshino">
+<meta property="article:tag" content="pottery&#39;yoshino">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/pq8iIZfyLxVkwWg.png"><link rel="shortcut icon" href="/img/omikuzi_char04.png"><link rel="canonical" href="http://pottery114514.github.io/2026/04/09/%E8%A1%A5%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误,看来你得想想别的办法',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '补题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-04-09 18:38:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test.fukit.cn/autoupload/en/rmXPGo-oos2gWeeK5_YVpx6uYlM1WsesEr16U4kyo4myl5f0KlZfm6UsKj-HyTuv/20260305/61uj/1180X1230/A5AD7CFE7447A9FEBAF3039BE595AE05.jpg/webp" onerror="onerror=null;src='null'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fa fa-suitcase"></i><span> Tools</span></a></div><div class="menus_item"><a class="site-page" href="/Journal/"><i class="fa-fw fa-solid fa-book"></i><span> Journals</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 介紹</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Yoshino's blogs</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fa fa-suitcase"></i><span> Tools</span></a></div><div class="menus_item"><a class="site-page" href="/Journal/"><i class="fa-fw fa-solid fa-book"></i><span> Journals</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 介紹</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">补题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-09T04:15:27.000Z" title="发表于 2026-04-09 12:15:27">2026-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-09T10:38:40.795Z" title="更新于 2026-04-09 18:38:40">2026-04-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="补题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="2025CCPC-四川-amp-2022河南"><a href="#2025CCPC-四川-amp-2022河南" class="headerlink" title="2025CCPC:四川&amp;2022河南"></a>2025CCPC:四川&amp;2022河南</h1><h2 id="Problem-I-本质不同后缀"><a href="#Problem-I-本质不同后缀" class="headerlink" title="Problem I. 本质不同后缀"></a>Problem I. 本质不同后缀</h2><p>输出n个字符串的后缀串集大小.第一次尝试直接用set存储后缀串,果然还是过不了啊,直接MIE. 在紫皮书上看到过这样的处理方式:通过滚动哈希优化,将字符串转换为哈希值存储.</p>
+<p>操作:对每个字符串,逆序遍历计算后缀哈希值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> ull base=<span class="number">31</span>;</span><br><span class="line">set&lt;ull&gt;note;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;cin&gt;&gt;n;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">        string s;cin&gt;&gt;s;</span><br><span class="line">        ull cur=base;</span><br><span class="line">        <span class="built_in">REP2</span>(i,s.<span class="built_in">size</span>()<span class="number">-1</span>,<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cur=base*(cur+s[i]);<span class="comment">//计算哈希值</span></span><br><span class="line">            note.<span class="built_in">insert</span>(cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;note.<span class="built_in">size</span>()&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-H-胡图图"><a href="#Problem-H-胡图图" class="headerlink" title="Problem H. 胡图图"></a>Problem H. 胡图图</h2><p>这题应该算签到题了…结果没考虑到原点附近的轴上点的特殊处理. 先画图模拟一下就没这么多事了</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll x=<span class="number">0</span>,y=<span class="number">0</span>,X,Y;</span><br><span class="line">    cin&gt;&gt;x&gt;&gt;y&gt;&gt;X&gt;&gt;Y;</span><br><span class="line">    X=<span class="built_in">abs</span>(X-x);Y=<span class="built_in">abs</span>(Y-y);<span class="comment">//变换参考系</span></span><br><span class="line">    ll sp1=(X+<span class="number">1</span>)/<span class="number">2</span>,sp2=(Y+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(X==<span class="number">0</span>&amp;&amp;Y==<span class="number">0</span>)&#123;cout&lt;&lt;<span class="string">&quot;0\n&quot;</span>;<span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span>((X==<span class="number">0</span>&amp;&amp;Y&lt;=<span class="number">2</span>)||(Y==<span class="number">0</span>&amp;&amp;X&lt;=<span class="number">2</span>))cout&lt;&lt;<span class="number">2</span>&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;<span class="comment">//特判</span></span><br><span class="line">    <span class="keyword">else</span> cout&lt;&lt;<span class="built_in">max</span>(sp1,sp2)&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-F-逆序对"><a href="#Problem-F-逆序对" class="headerlink" title="Problem F. 逆序对"></a>Problem F. 逆序对</h2><p>wa四发,差点触发战败cg.  对长度为n的01序列,将序列中未确定字符替换为0或1来最大化逆序对.一开始想的很麻烦,什么前半补1后半补0,贪心,动态规划…就是没去试着暴力+优化.</p>
+<p>最后想到之前写的一道很像的题<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2194/problem/B,只有第一次会遍历计算,后面单点修改再次计算的复杂度为O(1">https://codeforces.com/contest/2194/problem/B,只有第一次会遍历计算,后面单点修改再次计算的复杂度为O(1</a>).</p>
+<p>最后通过的思路:先计算全部替换为0时的情况,之后从前往后遍历,每次遇到替换位置时,改为1(填充01比例固定时,前1后0总是最优的)并维护变化(d=-pre1+suf0).  </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[N],b[N],suf[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;cin&gt;&gt;n;</span><br><span class="line">    suf[n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">        suf[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> x;cin&gt;&gt;x;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="string">&#x27;1&#x27;</span>)a[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x==<span class="string">&#x27;0&#x27;</span>)a[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;a[i]=<span class="number">-1</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//b[]记录填充后的序列</span></span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==<span class="number">-1</span>)b[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> b[i]=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//后缀0计数数组</span></span><br><span class="line">    <span class="built_in">REP2</span>(i,n,<span class="number">1</span>)suf[i]=(b[i]==<span class="number">0</span>?suf[i+<span class="number">1</span>]+<span class="number">1</span>:suf[i+<span class="number">1</span>]);</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b[i]==<span class="number">1</span>)&#123;</span><br><span class="line">            res+=suf[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//记录变化,线性时间复杂度</span></span><br><span class="line">    ll pre1=<span class="number">0</span>,d=<span class="number">0</span>,note=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==<span class="number">1</span>)&#123;</span><br><span class="line">            pre1++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]==<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="comment">//0-&gt;1</span></span><br><span class="line">            d+=-pre1+suf[i+<span class="number">1</span>];</span><br><span class="line">            note=<span class="built_in">max</span>(note,d);</span><br><span class="line">            pre1++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res+note&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-J-Mex-Tree"><a href="#Problem-J-Mex-Tree" class="headerlink" title="Problem J. Mex Tree"></a>Problem J. Mex Tree</h2><p>对k:0-n,找到点集满足mex=k的最大子树的点的数量</p>
+<p>参考:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/570781133">https://zhuanlan.zhihu.com/p/570781133</a></p>
+<p>差不多忘了怎么建树了,dfs也陌生到感觉有点神奇…</p>
+<h2 id="Problem-E-Serval-的俳句"><a href="#Problem-E-Serval-的俳句" class="headerlink" title="Problem E. Serval 的俳句"></a>Problem E. Serval 的俳句</h2><p>尝试分割成三段恰好满足条件的区间.每段的处理方式相同,只是目标长度和起点的差异,封装成函数方便书写.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pt</span><span class="params">(<span class="keyword">int</span>&amp; p,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;cc;</span><br><span class="line">    <span class="keyword">while</span>(p&lt;=n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> c=s[p];</span><br><span class="line">        cc[c]++;</span><br><span class="line">        <span class="keyword">if</span>(cc[c]&gt;=len)</span><br><span class="line">        &#123;</span><br><span class="line">            p++;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">        p++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">   	cin&gt;&gt;n;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)cin&gt;&gt;s[i];</span><br><span class="line">    <span class="keyword">int</span> st=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> c1=<span class="built_in">pt</span>(st,<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">int</span> c2=<span class="built_in">pt</span>(st,<span class="number">7</span>);</span><br><span class="line">    <span class="keyword">int</span> c3=<span class="built_in">pt</span>(st,<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">if</span>(c1&amp;&amp;c2&amp;&amp;c3)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">REP1</span>(i,<span class="number">1</span>,<span class="number">5</span>)cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(c1);</span><br><span class="line">        <span class="built_in">REP1</span>(i,<span class="number">1</span>,<span class="number">7</span>)cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(c2);</span><br><span class="line">        <span class="built_in">REP1</span>(i,<span class="number">1</span>,<span class="number">5</span>)cout&lt;&lt;<span class="built_in"><span class="keyword">char</span></span>(c3);</span><br><span class="line">    &#125;<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;none\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-H-旋转水管"><a href="#Problem-H-旋转水管" class="headerlink" title="Problem H. 旋转水管"></a>Problem H. 旋转水管</h2><p>dfs,最后记得重置vis.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> in)</span><span class="comment">//cur</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (f||x &lt; <span class="number">0</span> || x&gt;<span class="number">1</span> || y&lt;<span class="number">1</span> || y&gt;n)<span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; x &lt;&lt; &#x27; &#x27; &lt;&lt; y &lt;&lt; &#x27; &#x27; &lt;&lt; in &lt;&lt; &#x27;\n&#x27;;</span></span><br><span class="line">    <span class="keyword">if</span> (vis[x][y])<span class="keyword">return</span>;</span><br><span class="line">    vis[x][y]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span> &amp;&amp; y == ed) &#123;</span><br><span class="line">        <span class="keyword">if</span> (((in == <span class="number">3</span> || in == <span class="number">4</span>) &amp;&amp; a[<span class="number">1</span>][ed] == <span class="string">&#x27;L&#x27;</span>) ||((in == <span class="number">2</span>) &amp;&amp; a[<span class="number">1</span>][ed] == <span class="string">&#x27;I&#x27;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            f = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (a[x][y] == <span class="string">&#x27;L&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (in == <span class="number">1</span>||in==<span class="number">2</span>) &#123; <span class="built_in">dfs</span>(x, y - <span class="number">1</span>, <span class="number">3</span>); <span class="built_in">dfs</span>(x, y + <span class="number">1</span>, <span class="number">4</span>); &#125;</span><br><span class="line">        <span class="keyword">if</span> (in == <span class="number">3</span> || in == <span class="number">4</span>) &#123; <span class="built_in">dfs</span>(x - <span class="number">1</span>, y, <span class="number">1</span>); <span class="built_in">dfs</span>(x + <span class="number">1</span>, y, <span class="number">2</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (in == <span class="number">1</span>)<span class="built_in">dfs</span>(x - <span class="number">1</span>, y, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (in == <span class="number">2</span>)<span class="built_in">dfs</span>(x + <span class="number">1</span>, y, <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (in == <span class="number">3</span>)<span class="built_in">dfs</span>(x, y - <span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">dfs</span>(x, y + <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    vis[x][y]=<span class="number">0</span>;<span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Problem-J-Mex-Tree-1"><a href="#Problem-J-Mex-Tree-1" class="headerlink" title="Problem J. Mex Tree"></a>Problem J. Mex Tree</h2><p>k==0,打印与权值为0的点相接的最大子树的点数就行 </p>
+<p> k!=0,目标集必须包含所有[0,k-1]范围内的数. </p>
+<p>证伪比证真容易,比起判断所有连接枝中是否有完整包含[0,k-1]集的, 将权0点作为树根,k作为子树根节点,判断k子树是否都大于k更易实现. </p>
+<p>对整棵树从0根节点dfs,尝试更新res[]. 对点u,遍历树枝,统计u树点数sz[u]并记录树枝最小权mi[u], mi[u]&gt;u,说明主树满足条件,大小为n-sz[u]. 最后更新mi[u]=u</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> v[N],mi[N],sz[N],res[N];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; g[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    mi[u]=inf;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[u])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(v,u);</span><br><span class="line">        sz[u]+=sz[v];</span><br><span class="line">        mi[u]=<span class="built_in">min</span>(mi[u],mi[v]);<span class="comment">//记录u树枝最小点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(mi[u]&gt;u)res[u]=n-sz[u];<span class="comment">//u子树</span></span><br><span class="line">    mi[u]=<span class="built_in">min</span>(mi[u],u);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)cin&gt;&gt;v[i];<span class="comment">//1-n的权值</span></span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">2</span>,n)<span class="comment">//边(i,x)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x;cin&gt;&gt;x;</span><br><span class="line">        g[v[i]].<span class="built_in">push_back</span>(v[x]);</span><br><span class="line">        g[v[x]].<span class="built_in">push_back</span>(v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[<span class="number">0</span>])res[<span class="number">0</span>]=<span class="built_in">max</span>(res[<span class="number">0</span>],sz[v]);</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)cout&lt;&lt;res[i]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    cout&lt;&lt;n&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="一些单题"><a href="#一些单题" class="headerlink" title="一些单题"></a>一些单题</h1><h2 id="自底而上的聚合标记"><a href="#自底而上的聚合标记" class="headerlink" title="自底而上的聚合标记"></a>自底而上的聚合标记</h2><p>有时候,把树当作特殊的图处理很方便.</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1843/D">https://codeforces.com/problemset/problem/1843/D</a></p>
+<p>从所有叶子节点开始bfs向根节点汇总更新每个点下落到边界的情况数.</p>
+<p>先将叶子节点更新标记并加入多源bfs的队列.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">V <span class="title">way</span><span class="params">(n+<span class="number">1</span>,<span class="number">0</span>)</span>,<span class="title">vis</span><span class="params">(n+<span class="number">1</span>,<span class="number">0</span>)</span>,<span class="title">rem</span><span class="params">(n+<span class="number">1</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">    queue&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">1</span>,n)rem[i]=g[i].<span class="built_in">size</span>();<span class="comment">//总度</span></span><br><span class="line">    <span class="built_in">REP1</span>(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(rem[i]==<span class="number">1</span>)&#123;</span><br><span class="line">            way[i]=<span class="number">1</span>;vis[i]=<span class="number">1</span>;</span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>反向dfs(关键),实时更新点的标记状态vis:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(q.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="keyword">int</span> u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v:g[u])&#123;</span><br><span class="line">            <span class="keyword">if</span>(vis[v])<span class="keyword">continue</span>;</span><br><span class="line">            way[v]+=way[u];</span><br><span class="line">            rem[v]--;</span><br><span class="line">            <span class="keyword">if</span>(rem[v]==<span class="number">1</span>&amp;&amp;v!=<span class="number">1</span>)&#123;<span class="comment">//只剩向上的出度</span></span><br><span class="line">                q.<span class="built_in">push</span>(v);</span><br><span class="line">                vis[v]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>对根单独处理:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!vis[<span class="number">1</span>])&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v:g[<span class="number">1</span>])way[<span class="number">1</span>]+=way[v];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>示例代码则是直接用了<strong>dfs子树dp</strong>.真奇怪,如果形成一条链的话,不会栈溢出吗?因为担心这点,没有考虑用递归解决.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> f)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(g[u].<span class="built_in">size</span>()==<span class="number">1</span>&amp;&amp;u!=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> way[u]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==f)<span class="keyword">continue</span>;</span><br><span class="line">        sum+=<span class="built_in">dfs</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> way[u]=sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但毕竟递归是非常自然的想法,尝试其他的等效方法:</p>
+<h3 id="等价way1"><a href="#等价way1" class="headerlink" title="等价way1"></a>等价way1</h3><p>BFS建序 + 逆序DP</p>
+<p>根节点一次bfs建立树序</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">V ord,<span class="built_in">pa</span>(n+<span class="number">1</span>);</span><br><span class="line">   queue&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">   q.<span class="built_in">push</span>(<span class="number">1</span>);pa[<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">   <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">       <span class="keyword">int</span> u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">       ord.<span class="built_in">push_back</span>(u);</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[u])&#123;</span><br><span class="line">           <span class="keyword">if</span>(v==pa[u])<span class="keyword">continue</span>;</span><br><span class="line">           pa[v]=u;q.<span class="built_in">push</span>(v);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>从叶节点往上更新</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">REP2</span>(i,ord.<span class="built_in">size</span>()<span class="number">-1</span>,<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> u=ord[i];</span><br><span class="line">    <span class="keyword">if</span>(g[u].<span class="built_in">size</span>()==<span class="number">1</span>&amp;&amp;u!=<span class="number">1</span>)way[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(pa[v]==u)way[u]+=way[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2025CCPC-%E5%9B%9B%E5%B7%9D-amp-2022%E6%B2%B3%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text">2025CCPC:四川&amp;2022河南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-I-%E6%9C%AC%E8%B4%A8%E4%B8%8D%E5%90%8C%E5%90%8E%E7%BC%80"><span class="toc-number">1.1.</span> <span class="toc-text">Problem I. 本质不同后缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-H-%E8%83%A1%E5%9B%BE%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">Problem H. 胡图图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-F-%E9%80%86%E5%BA%8F%E5%AF%B9"><span class="toc-number">1.3.</span> <span class="toc-text">Problem F. 逆序对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-J-Mex-Tree"><span class="toc-number">1.4.</span> <span class="toc-text">Problem J. Mex Tree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-E-Serval-%E7%9A%84%E4%BF%B3%E5%8F%A5"><span class="toc-number">1.5.</span> <span class="toc-text">Problem E. Serval 的俳句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-H-%E6%97%8B%E8%BD%AC%E6%B0%B4%E7%AE%A1"><span class="toc-number">1.6.</span> <span class="toc-text">Problem H. 旋转水管</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-J-Mex-Tree-1"><span class="toc-number">1.7.</span> <span class="toc-text">Problem J. Mex Tree</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%8D%95%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">一些单题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%BA%95%E8%80%8C%E4%B8%8A%E7%9A%84%E8%81%9A%E5%90%88%E6%A0%87%E8%AE%B0"><span class="toc-number">2.1.</span> <span class="toc-text">自底而上的聚合标记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7way1"><span class="toc-number">2.1.1.</span> <span class="toc-text">等价way1</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2026 By Yoshino</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Ciallo~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><div class="aplayer no-destroy" data-id="314918604" data-server="tencent" data-type="song" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
