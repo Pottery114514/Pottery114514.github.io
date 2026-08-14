@@ -26,11 +26,22 @@ const iroShow = ref(false);
 
 const toggleShow = () => iroShow.value = !iroShow.value;
 
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+
 </script>
 
 <template>
     <div class="iro-root" :class="{ 'iro-light': !iroDark, 'iro-dark': iroDark }">
-        <button class="iro-panel-btn iro-go-top" :class="{ 'iro-hide': isAtTop }" title="回到顶部">
+        <button 
+            class="iro-panel-btn iro-go-top" 
+            :class="{ 'iro-hide': isAtTop }" 
+            @click="scrollToTop"
+            title="回到顶部">
             <fa-i icon="fa-solid fa-caret-up" size="lg"></fa-i>
         </button>
         <button class="iro-panel-btn iro-show-panel" title="控制面板" @click="toggleShow">

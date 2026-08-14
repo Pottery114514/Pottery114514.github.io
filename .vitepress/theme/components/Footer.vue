@@ -19,8 +19,8 @@ const iroDark = inject('iroDark');
                 <slot name="iro-footer"></slot>
                 <p v-if="!iro?.footer?.beforeSlot" v-html="iro.footer.content"></p>
                 <span class="iro-theme-info">
-                    <a href="https://github.keqing.moe/keqingmoe/sakurairo">Theme VitePress Sakurairo</a> <a
-                        href="https://keqing.moe">by KeqingMoe</a>
+                    <a href="https://vitepress.dev/zh/">VitePress|</a> 
+                    <a href="https://keqing.moe">Theme by KeqingMoe</a>
                 </span>
             </div>
         </footer>
