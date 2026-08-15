@@ -5,7 +5,7 @@ import { join } from 'path';
 import iro from './theme/config/iro';
 
 export default defineConfigWithTheme({
-    base: '/pottery114514/',
+    base: '/',
     srcDir: "docs",
     title: "Yoshino's Blog",
     description: "A VitePress Site",
