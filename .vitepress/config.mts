@@ -6,7 +6,6 @@ import iro from './theme/config/iro';
 
 export default defineConfigWithTheme({
     base: '/',
-    srcDir: "docs",
     title: "Yoshino's Blog",
     description: "A VitePress Site",
     lang: 'zh',
@@ -25,7 +24,7 @@ export default defineConfigWithTheme({
     transformPageData(pageData) {
         if (pageData.isNotFound) return;
 
-        pageData.lastUpdated = statSync(join('docs', pageData.filePath)).mtimeMs;
+        pageData.lastUpdated = statSync(pageData.filePath).mtimeMs;
 
         if (!('layout' in pageData.frontmatter)) {
             pageData.frontmatter.layout = 'post';
