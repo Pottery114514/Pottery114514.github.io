@@ -10,7 +10,7 @@ export default defineConfigWithTheme({
     title: "Yoshino's Blog",
     description: "A VitePress Site",
     lang: 'zh',
-    cleanUrls: true,
+    //cleanUrls: true,
     ignoreDeadLinks: true,
     lastUpdated: true,
     markdown: {
