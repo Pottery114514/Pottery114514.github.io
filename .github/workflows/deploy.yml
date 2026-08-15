@@ -31,6 +31,16 @@ jobs:
         run: npm ci
       - name: Build with VitePress
         run: npm run docs:build
+      - name: Debug - List generated files        # 👈 新增
+        run: |
+          echo "=== Contents of docs/ ==="
+          ls -la docs/
+          echo "=== Contents of docs/.vitepress/ ==="
+          ls -la docs/.vitepress/ || echo "docs/.vitepress/ does not exist"
+          echo "=== Look for dist anywhere ==="
+          find . -name "dist" -type d 2>/dev/null | head -20
+          echo "=== Check if there is .vitepress in root ==="
+          ls -la .vitepress/ 2>/dev/null || echo "No .vitepress in root"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4   # 🔄 v3 → v4
         with:
