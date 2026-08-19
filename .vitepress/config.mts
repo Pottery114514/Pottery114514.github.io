@@ -25,7 +25,8 @@ export default defineConfigWithTheme({
     transformPageData(pageData) {
         if (pageData.isNotFound) return;
 
-        pageData.lastUpdated = statSync(pageData.filePath).mtimeMs;
+        const filePath = join('src', pageData.filePath);// 这里的 filePath 是相对于项目根目录的路径,如 src/guide/index.md
+        pageData.lastUpdated = statSync(filePath).mtimeMs;
 
         if (!('layout' in pageData.frontmatter)) {
             pageData.frontmatter.layout = 'post';
