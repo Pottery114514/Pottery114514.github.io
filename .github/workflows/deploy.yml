@@ -34,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4   # 🔄 v3 → v4
         with:
-          path: .vitepress/dist
+          path: .vitepress/dist/src
 
   deploy:
     environment:

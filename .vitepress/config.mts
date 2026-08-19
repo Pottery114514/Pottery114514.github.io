@@ -6,6 +6,7 @@ import iro from './theme/config/iro';
 
 export default defineConfigWithTheme({
     base: '/',
+    srcDir: 'src',
     title: "Yoshino's Blog",
     description: "A VitePress Site",
     lang: 'zh',
