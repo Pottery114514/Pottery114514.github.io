@@ -5,7 +5,6 @@ import { inject, ref } from 'vue';
 import { data as iro } from '../iro.data';
 
 const iroDark = inject('iroDark');
-
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const iroDark = inject('iroDark');
         <footer class="iro-footer" :class="{ 'iro-light': !iroDark, 'iro-dark': iroDark }">
             <div class="iro-header-container">
                 <div class="iro-sakura-icon">
-                    <img src="../../../src/res/iro/sakura_icon.svg" draggable="false" alt="sakura icon">
+                    <img src="/res/iro/sakura_icon.svg" draggable="false" alt="sakura icon">
                 </div>
                 <p v-if="iro?.footer?.beforeSlot" v-html="iro.footer.content"></p>
                 <slot name="iro-footer"></slot>

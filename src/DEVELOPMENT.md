@@ -41,10 +41,11 @@ npm run docs:preview
 
 ```
 vitepress/
-├── src/                          # Markdown 源文件与静态资源
+├── src/                          # Markdown 源文件
 │   ├── index.md                  # 首页（layout: home）
-│   ├── *.md                      # 文章 / 示例页面
-│   └── res/                      # 图片、图标等（构建后映射到 /res/...）
+│   └── *.md                      # 文章 / 示例页面
+├── public/                       # 静态资源（构建时原样复制到站点根目录）
+│   └── res/                      # 图片、图标等 → 引用路径 /res/...
 │       ├── avatar.png
 │       ├── favicon.png
 │       ├── icon.png
@@ -373,27 +374,67 @@ export default {
 
 ## 静态资源
 
-资源放在 `src/res/`，构建后可通过 `/res/...` 访问：
+VitePress 只会将 **`public/`** 目录下的文件在构建时原样复制到站点根目录；`src/` 内的文件不会自动变成可访问的 URL。
+
+因此所有需要在配置、组件、Markdown 中通过绝对路径引用的图片、图标、字体等，都应放在 `public/` 下。
+
+### 目录与 URL 对应关系
 
 ```
-src/res/avatar.png   →  /res/avatar.png
-src/res/favicon.png  →  /res/favicon.png
+public/res/avatar.png   →  /res/avatar.png
+public/res/favicon.png  →  /res/favicon.png
+public/res/icon.png     →  /res/icon.png
 ```
 
-在配置中引用：
+### 引用方式
+
+**主题配置（`iro.ts`）— 使用以 `/` 开头的站点根路径：**
 
 ```ts
 favicon: '/res/favicon.png',
-cover: { avatar: '/res/avatar.png', ... }
+cover: { avatar: '/res/avatar.png', ... },
+nav: { icon: '/res/icon.png', ... },
 ```
 
-Markdown 中引用：
+**Vue 组件模板 — 同样使用根路径：**
+
+```vue
+<img src="/res/iro/sakura_icon.svg" alt="sakura icon">
+<img :src="iro.nav.icon">   <!-- iro.ts 中已配置为 /res/icon.png -->
+```
+
+**Markdown 正文：**
 
 ```markdown
 ![示例](/res/posts/helloworld.jpg)
 ```
 
-> 本项目已将资源从 `public/res/` 迁移至 `src/res/`，与 VitePress `srcDir` 约定一致。
+**首页文章封面（`posts.ts`）：**
+
+```ts
+thumb: '/res/posts/helloworld.jpg',
+```
+
+### 不要使用的写法
+
+| 写法 | 问题 |
+|------|------|
+| `src/res/avatar.png` | `src/` 不是静态资源目录，preview/生产环境 404 |
+| `../../../src/res/icon.png` | 相对路径依赖源码目录结构，构建后失效 |
+| `./res/avatar.png`（在配置中） | 相对路径在运行时解析位置不确定 |
+
+### 可选：在 Vue 中 import 资源
+
+若资源仅在某组件内使用、不需要在 Markdown/配置里写路径，可通过 Vite 导入（会参与打包并带 hash）：
+
+```vue
+<script setup>
+import sakuraIcon from '../../../public/res/iro/sakura_icon.svg';
+</script>
+<img :src="sakuraIcon">
+```
+
+主题配置与 Markdown 仍推荐 `public/` + `/res/...` 根路径，便于统一维护。
 
 ---
 
@@ -424,6 +465,15 @@ Markdown 中引用：
 layout: page   # 或 home
 ---
 ```
+
+### 源目录
+
+public/（项目根目录）— 默认的静态资源目录，构建时其内容直接复制到 dist/ 根目录，通过 /xxx 访问。
+srcDir（默认也是 ./ 根目录）— 告诉 VitePress markdown 源文件在哪里。
+如果设置了 srcDir: './src'，则：
+markdown 源文件从 src/ 读取
+静态资源目录变为 src/public/（srcDir 下的 public/），构建后复制到 dist/ 根目录，访问路径仍是 /xxx
+根目录的 public/ 不再起作用（被 srcDir/public/ 覆盖）
 
 ### Q: 部署
 

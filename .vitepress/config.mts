@@ -8,7 +8,7 @@ import iro from './theme/config/iro';
 //参考https://vitepress.dev/zh/reference/site-config#overview
 export default defineConfigWithTheme({
     base: '/',
-    srcDir: './src',//相对于项目根目录的 markdown 文件所在的文件夹。
+    srcDir: './src',//决定 VitePress 从哪里找 markdown 源文件，修改后必须同步更新所有硬编码的路径引用
     title: "Yoshino's Blog",
     description: "A VitePress Site",
     lang: 'zh',
@@ -47,12 +47,21 @@ export default defineConfigWithTheme({
         }
     },
     vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler'
+        publicDir: 'public',
+        vue: {
+            template: {
+                transformAssetUrls: {
+                    img: ['src']
+                }
+            }
+        },
+        assetsInclude: ['**/*.svg'],
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler'
+                }
+            }
         }
-      }
-    }
     }
 });
