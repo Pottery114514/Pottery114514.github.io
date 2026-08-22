@@ -4,20 +4,28 @@ import { statSync } from 'fs';
 import { join } from 'path';
 import iro from './theme/config/iro';
 
+
+//参考https://vitepress.dev/zh/reference/site-config#overview
 export default defineConfigWithTheme({
     base: '/',
-    srcDir: 'src',
+    srcDir: './src',//相对于项目根目录的 markdown 文件所在的文件夹。
     title: "Yoshino's Blog",
     description: "A VitePress Site",
     lang: 'zh',
     //cleanUrls: true,
     ignoreDeadLinks: true,
-    lastUpdated: true,
+    lastUpdated: true,//使用 Git 获取每个页面的最后更新时间戳
+    
     markdown: {
+        // 必须开启，TocSidebar 才能通过 useData().page.headers 获取标题树
+        headers: { level: [2, 3] },
         config: md => {
             md.use(ruby);
         },
-        math: true
+        math: true,
+        image: {
+            lazyLoading: true
+        }
     },
     head: [
         ['link', { rel: 'icon', href: iro.favicon }],

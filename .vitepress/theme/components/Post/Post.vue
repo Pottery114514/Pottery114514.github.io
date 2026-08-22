@@ -4,6 +4,8 @@ import { computed, inject } from 'vue';
 import { data as iro } from '../../iro.data';
 import { useData } from 'vitepress';
 
+import TocSidebar from './TocSidebar.vue';
+
 const iroDark = inject('iroDark');
 
 const { page } = useData();
@@ -36,6 +38,7 @@ const date = computed(
                     <div class="iro-post-footer"></div>
                 </article>
             </main>
+            <TocSidebar />
         </div>
     </div>
 </template>

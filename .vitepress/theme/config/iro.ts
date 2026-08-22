@@ -16,7 +16,6 @@ export default {
     title: "Yoshino's Blog",
     /** 站点简介:同样与 config.mts 对齐,方便后续主题组件取用 */
     description: "A VitePress Site",
-    /** 浏览器标签页的 favicon 路径(静态资源放 docs/public 目录下或直接写外链) */
     favicon: '/res/favicon.png',
 
     // ===== 首页封面区 =====
@@ -37,9 +36,7 @@ export default {
 
     // ===== 顶部导航 =====
     nav: {
-        /** 导航栏左上角的站点 logo 图标 */
         icon: '/res/icon.png',
-        /** 导航链接(与当前项目 docs 下已有的页面一一对应) */
         links: [
             { title: '首页', url: '/' },
             { title: 'Markdown 示例', url: '/markdown-examples' },
